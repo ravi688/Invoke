@@ -11,9 +11,18 @@ static constexpr std::string_view gWhichCmd = "which";
 
 namespace invoke
 {
+
+	static std::string::size_type FindFirstNewLineOrCarriageReturn(std::string_view sv, std::string::size_type startIndex)
+	{
+		auto index = sv.find_first_of("\n", startIndex);
+		if(index == std::string::npos)
+			index = sv.find_first_of("\r", startIndex);
+		return index;
+	}
+
 	// Returns absolute path of a shell command
 	// It internally runs "which"
-	INVOKE_API std::optional<std::string> GetExecutablePath(std::string_view executable)
+	INVOKE_API std::optional<std::vector<std::string>> GetExecutablePaths(std::string_view executable)
 	{
 	    std::vector<const char*> args = { gWhichCmd.data(), executable.data(), nullptr};
 	
@@ -38,12 +47,24 @@ namespace invoke
 	        reproc_wait(process, REPROC_INFINITE);
 	    } else isSuccess = false;
 	    reproc_destroy(process);
-	    // Remove trailing newline or carrage return characters if present
-	    if (!result.empty())
+	    if (isSuccess && !result.empty())
+	    {
+	    	std::vector<std::string> paths;
+	    	std::string::size_type startIndex = 0;
+	    	while(startIndex < result.size())
+	    	{
+	    		auto pos = FindFirstNewLineOrCarriageReturn(result, startIndex);
+	    		if(pos == std::string::npos)
+	    			break;
+	    		paths.push_back(result.substr(startIndex, pos - startIndex));
+	    		startIndex = pos + 1;
+	    	}
+	
+	    	// Remove trailing newline or carrage return characters if present
 	    	while(result.back() == '\n' || result.back() == '\r')
 	        	result.pop_back();
-	    if(isSuccess)
-	    	return { result };
+	    	return { paths };
+	    }
 	    else return { };
 	}
 
