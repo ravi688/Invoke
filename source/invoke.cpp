@@ -59,10 +59,6 @@ namespace invoke
 	    		paths.push_back(result.substr(startIndex, pos - startIndex));
 	    		startIndex = pos + 1;
 	    	}
-	
-	    	// Remove trailing newline or carrage return characters if present
-	    	while(result.back() == '\n' || result.back() == '\r')
-	        	result.pop_back();
 	    	return { paths };
 	    }
 	    else return { };
@@ -75,7 +71,7 @@ namespace invoke
 	  	cArgs.reserve(args.size());
 	  	for(const auto& arg : args)
 	  		cArgs.push_back(arg.data());
-	  	cArgs.push_back(nullptr);
+		cArgs.push_back(nullptr);
 	
 	  	// Setup options
 	  	reproc_options opts { };

@@ -16,6 +16,10 @@ int main()
 			std::cout << path << "\n";
 	}
 	else std::cerr << "No paths for python found\n";
+	std::string str { "echo turn" };
+	std::string echoStr = str.substr(0, 4);
+	returnCode = invoke::Exec({ echoStr, "\"Hello Another World\"" });
+	assert(returnCode == 0);
 	return 0;
 }
 
