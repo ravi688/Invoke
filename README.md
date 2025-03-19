@@ -1,4 +1,5 @@
 # Invoke
+Sub-process execution. A wrapper library around reproc used across my projects
 
 ## Example
 ```cpp
