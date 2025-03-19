@@ -20,6 +20,19 @@ namespace invoke
 		return index;
 	}
 
+	static void ReplaceSubstr(std::string& str, const std::string_view oldSubStr, const std::string_view newSubStr)
+	{
+		std::size_t pos = 0;
+		// Search for the word in the string
+		while ((pos = str.find(oldSubStr, pos)) != std::string::npos)
+		{
+			// Replace the found word with the new word
+			str.replace(pos, oldSubStr.length(), newSubStr);
+			// Move past the word just replaced
+			pos += newSubStr.length();
+		}
+	}
+
 	// Returns absolute path of a shell command
 	// It internally runs "which"
 	INVOKE_API std::optional<std::vector<std::string>> GetExecutablePaths(std::string_view executable)
@@ -59,6 +72,8 @@ namespace invoke
 	    		paths.push_back(result.substr(startIndex, pos - startIndex));
 	    		startIndex = pos + 1;
 	    	}
+	    	for(auto& path : paths)
+	    		ReplaceSubstr(path, "\\", "/");
 	    	return { paths };
 	    }
 	    else return { };
