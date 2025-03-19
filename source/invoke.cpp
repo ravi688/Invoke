@@ -14,9 +14,7 @@ namespace invoke
 
 	static std::string::size_type FindFirstNewLineOrCarriageReturn(std::string_view sv, std::string::size_type startIndex)
 	{
-		auto index = sv.find_first_of("\n", startIndex);
-		if(index == std::string::npos)
-			index = sv.find_first_of("\r", startIndex);
+		auto index = sv.find_first_of("\r\n", startIndex);
 		return index;
 	}
 
