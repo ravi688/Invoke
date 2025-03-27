@@ -83,7 +83,8 @@ lib_install_dir_bm_internal__ = get_option('libdir')/'invoke'
 
 # Dependencies
 dependencies_bm_internal__ = [
-dependency('reproc')
+dependency('reproc'),
+dependency('common')
 ]
 
 # Linker Arguments

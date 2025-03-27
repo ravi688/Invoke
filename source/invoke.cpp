@@ -94,4 +94,14 @@ namespace invoke
 	  	int returnCode = reproc_run(cArgs.data(), opts);
 	  	return returnCode;
 	}
+
+	SwitchToSudo::SwitchToSudo()
+	{
+
+	}
+
+	SwitchToSudo::~SwitchToSudo()
+	{
+		
+	}
 }
