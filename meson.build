@@ -70,7 +70,7 @@ debug_defines_bm_internal__ = [
 
 # Source files (common to all targets)
 sources_bm_internal__ = files(
-'source/invoke.cpp'
+'source/invoke.cpp', 'source/root.cpp'
 )
 
 # Include directories

@@ -30,6 +30,7 @@
         }
     ],
     "sources" : [
-        "source/invoke.cpp"
+        "source/invoke.cpp",
+	"source/root.cpp"
     ]
 }
