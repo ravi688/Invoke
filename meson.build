@@ -70,7 +70,7 @@ debug_defines_bm_internal__ = [
 
 # Source files (common to all targets)
 sources_bm_internal__ = files(
-'source/invoke.cpp'
+'source/invoke.cpp', 'source/root.cpp'
 )
 
 # Include directories
@@ -83,7 +83,8 @@ lib_install_dir_bm_internal__ = get_option('libdir')/'invoke'
 
 # Dependencies
 dependencies_bm_internal__ = [
-dependency('reproc')
+dependency('reproc'),
+dependency('common')
 ]
 
 # Linker Arguments

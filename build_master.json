@@ -4,7 +4,7 @@
     "include_dirs": "include",
     "debug_defines" : [ "-DINVOKE_DEBUG" ],
     "release_defines" : [ "-DINVOKE_RELEASE" ],
-    "dependencies" : [ "reproc" ],
+    "dependencies" : [ "reproc", "common" ],
     "windows_link_args" : [ "-lws2_32" ],
     "targets": [
         {
@@ -30,6 +30,7 @@
         }
     ],
     "sources" : [
-        "source/invoke.cpp"
+        "source/invoke.cpp",
+	"source/root.cpp"
     ]
 }
