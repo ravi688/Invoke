@@ -45,7 +45,7 @@ namespace invoke
 		// Now the effective user id must be of root
 		return geteuid() == 0;
 #else
-		return true
+		return true;
 #endif // PLATFORM_LINUX
 	}
 
@@ -62,7 +62,7 @@ namespace invoke
 
         	return originalUID == geteuid();
 #else
-		return true
+		return true;
 #endif // PLATFORM_LINUX
 	}
 }
