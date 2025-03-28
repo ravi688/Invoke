@@ -33,6 +33,9 @@ int main(int argc, const char* argv[])
 	returnCode = invoke::Exec({ echoStr, "\"Hello Another World\"" });
 	assert(returnCode == 0);
 
+	returnCode = invoke::Exec({ "echo", "\"Hello World with root privileges\"" }, "", true);
+	assert(returnCode == 0);
+
 	bool isInitiallyRoot = invoke::HasRootPrivileges();
 
 	TellIfRunningInSudo();
