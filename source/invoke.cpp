@@ -77,11 +77,15 @@ namespace invoke
 	    else return { };
 	}
 
-	INVOKE_API int Exec(const std::vector<std::string>& args, std::string_view workDir)
+	INVOKE_API int Exec(const std::vector<std::string>& args, std::string_view workDir, bool isGainRootPrivilges)
 	{
 		// Build c-style argument list
 	  	std::vector<const char*> cArgs;
-	  	cArgs.reserve(args.size());
+	  	cArgs.reserve(args.size() + 1);
+#ifdef PLATFORM_LINUX
+	  	if(isGainRootPrivilges && (args.size() > 0 && args[0] != "sudo"))
+	  		cArgs.push_back("sudo");
+#endif // PLATFORM_LINUX
 	  	for(const auto& arg : args)
 	  		cArgs.push_back(arg.data());
 		cArgs.push_back(nullptr);
