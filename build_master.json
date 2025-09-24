@@ -19,7 +19,7 @@
             "is_shared_library" : true,
             "is_install" : true,
             "build_defines" : [ "-DINVOKE_BUILD_SHARED_LIBRARY" ],
-            "use_defines" : [ "-DINVOOKE_USE_SHARED_LIBRARY" ]
+            "use_defines" : [ "-DINVOKE_USE_SHARED_LIBRARY" ]
         },
         {
             "name": "main_test",
@@ -34,3 +34,4 @@
 	"source/root.cpp"
     ]
 }
+
